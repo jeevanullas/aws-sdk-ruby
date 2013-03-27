@@ -1396,6 +1396,7 @@ module AWS
       def new_request
         req = S3::Request.new
         req.force_path_style = config.s3_force_path_style?
+        req.service_path = config.s3_service_path
         req
       end
 

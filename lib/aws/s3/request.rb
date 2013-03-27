@@ -31,6 +31,9 @@ module AWS
       # @private
       attr_accessor :force_path_style
 
+      # @private
+      attr_accessor :service_path
+
       def metadata= metadata
         Array(metadata).each do |name, value|
           headers["x-amz-meta-#{name}"] = value
@@ -71,7 +74,7 @@ module AWS
         parts << bucket if bucket and path_style?
         parts << escape_path(key) if key
 
-        path = '/' + parts.join('/')
+        path = service_path + parts.join('/')
         querystring = url_encoded_params
 
         uri = ''
