@@ -15,4 +15,6 @@ AWS::Core::Configuration.module_eval do
 
   add_service 'EC2', 'ec2', 'ec2.amazonaws.com'
 
+  add_option :ec2_service_path, '/' 
+
 end

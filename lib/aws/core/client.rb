@@ -59,6 +59,9 @@ module AWS
         @http_handler = @config.http_handler
         @endpoint = config.send(:"#{service_ruby_name}_endpoint")
         @port = config.send(:"#{service_ruby_name}_port")
+        if config.send(:"#{service_ruby_name}_service_path") <=> "/"
+          @uri = config.send(:"#{service_ruby_name}_service_path")
+        end 
         @http_read_timeout = @config.http_read_timeout
 
       end
@@ -88,6 +91,11 @@ module AWS
       #   makes requests against.
       # @private
       attr_reader :endpoint
+
+      # @return [String] Returns the service path this client
+      #   makes requests against.
+      # @private
+      attr_reader :uri
 
       # @return (see Client.operations)
       def operations
@@ -514,6 +522,7 @@ module AWS
         http_request.default_read_timeout = http_read_timeout
         http_request.host = endpoint
         http_request.port = port
+        http_request.uri = uri
         http_request.region = config.send(:"#{service_ruby_name}_region")
         http_request.proxy_uri = config.proxy_uri
         http_request.use_ssl = config.use_ssl?
