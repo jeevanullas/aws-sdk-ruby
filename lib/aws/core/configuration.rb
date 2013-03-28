@@ -537,6 +537,10 @@ module AWS
 
       add_option :user_agent_prefix
 
+      add_option :ec2_service_path, '/'
+
+      add_option :s3_service_path, '/'
+
     end
   end
 end
