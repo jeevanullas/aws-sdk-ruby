@@ -1390,6 +1390,7 @@ module AWS
         req.host = options.fetch(:endpoint, config.s3_endpoint)
         req.port = options.fetch(:port, port)
         req.force_path_style = options.fetch(:force_path_style, config.s3_force_path_style)
+        req.service_path = config.s3_service_path
 
         REQUEST_PARAMETERS.each do |param|
           req.add_param(param.to_s.tr("_","-"),
